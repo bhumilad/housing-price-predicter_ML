@@ -1,11 +1,10 @@
 from flask import Flask, render_template, request
-import jsonify
+
 import requests
 from joblib import dump,load
 
 import numpy as np
-import sklearn
-from sklearn.preprocessing import StandardScaler
+
 app = Flask(__name__)
 
 model=load('Dragon.joblib')
@@ -15,10 +14,9 @@ def Home():
     return render_template('index.html')
 
 
-standard_to = StandardScaler()
 @app.route("/predict", methods=['POST'])
 def predict():
-    Fuel_Type_Diesel=0
+    
     if request.method == 'POST':
         f1 = float(request.form['f1'])
         f2=float(request.form['f2'])
